@@ -46,9 +46,10 @@ const EditEmployee = () => {
       .then((error) => console.log(error));
   };
 
-  const handelNewEmployee = (e) => {
-    const apiUrl = "http://localhost:5126/api/Employee/RegistrationEmployee";
+  const handelUpdateEmployee = (e) => {
+    const apiUrl = "http://localhost:5126/api/Employee/UpdateEmployee";
     const requestBody = {
+      employeeID:employeeID,
       firstName: firstName,
       lastName: lastName,
       position: position,
@@ -59,7 +60,7 @@ const EditEmployee = () => {
       password: password,
     };
     axios
-      .post(apiUrl, requestBody)
+      .put(apiUrl, requestBody)
       .then((result) => {
         if (result.data.response.statusCode === 200) {
           alert(result.data.response.statusMessage);
@@ -173,7 +174,7 @@ const EditEmployee = () => {
         <div className="row">
           <button
             className="btn btn-primary"
-            onClick={(e) => handelNewEmployee(e)}
+            onClick={(e) => handelUpdateEmployee(e)}
           >
             {" "}
             Submit{" "}
